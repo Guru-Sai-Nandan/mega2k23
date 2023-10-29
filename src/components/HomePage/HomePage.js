@@ -3,21 +3,21 @@ import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 
 function validateEmail(email) {
-    // Regular expression for basic email validation
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  
-    return emailRegex.test(email);
-  }
+  // Regular expression for basic email validation
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-  
+  return emailRegex.test(email);
+}
+
+
 function HomePage() {
   let [personid, setpersonid] = useState("");
   let navigate = useNavigate();
 
-  
+
   return (
-    <div className="d-flex border  homepage">
-      <div className="leftside my-auto">
+    <div className="d-flex border homepage mx-4 p-5">
+      <div className="leftside me-3 my-auto">
         <div class="flex flex-col ">
           <h1 class="mb-4 font-bold  text-center lg:text-left text-2xl md:text-4xl  leading-10 flex flex-col md:gap-1">
             <span class="">Optimize Your Talent</span>
@@ -48,30 +48,30 @@ function HomePage() {
           </a> */}
         </div>
       </div>
-      <div className=" d-flex rightside my-auto">
-        <input
+      <div className="d-flex flex-column rightside justify-content-center h-100 border-start">
+        <h4 className="text-center">Enter Candidates Email</h4>
+        <input 
           type="email"
           name="email"
           id="email"
-          className="form w-25 form-control m-3"
+          className="form-control w-50 mx-auto m-3"
           placeholder="Email"
           onChange={(e) => {
             setpersonid(e.target.value);
           }}
         />
         <button
-          className="btn btn-success m-3"
+          className="btn btn-success m-3 w-25 mx-auto"
           onClick={() => {
-            if(validateEmail(personid))
-            {
-              localStorage.setItem('email',personid);
+            if (validateEmail(personid)) {
+              localStorage.setItem('email', personid);
               navigate('/profile')
             }
             else
-                alert("Enter Valid Email")
+              alert("Enter Valid Email")
           }}
         >
-          Search Person
+          Know Details
         </button>
       </div>
     </div>

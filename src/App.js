@@ -4,6 +4,7 @@ import RootLayout from './components/RootLayout';
 import HomePage from './components/HomePage/HomePage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import { ChakraProvider } from '@chakra-ui/react';
+import Quiz from './components/Quiz'
 function App() {
 
 const router = createBrowserRouter([
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
       {
         path:'/profile',
         element:<ProfilePage />
+      },
+      {
+        path:'/quiz',
+        element:<Quiz/>
       }
     ]
 
