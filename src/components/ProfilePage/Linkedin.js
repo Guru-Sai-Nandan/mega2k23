@@ -21,9 +21,9 @@ const [Experiences,setExperiences]=useState(["Amazon","Amazon","Amazon","Amazon"
        <h4 className='text-center fw-bold'>LinkedIn</h4>
 
        {/* Row-1 */}
-       <div className="row my-4 ">
+       <div className="row my-4">
         <div className="col-sm-4 m-auto border rounded my-2">
-          <h3 className='text-center '>{name}</h3>
+          <h3 className='text-center'>{name}</h3>
           <p>{disc}</p>
         </div>
         <div className="col-sm-1"></div>
@@ -35,12 +35,12 @@ const [Experiences,setExperiences]=useState(["Amazon","Amazon","Amazon","Amazon"
        </div>
 
        {/* Row-2 */}
-       <div className="row my-4 ">
-        <div className="col-sm-4  m-auto border rounded my-2">{
+       <div className="row my-4">
+        <div className="col-sm-4 m-auto border rounded my-2">{
           <Skills/>
         }</div>
         <div className="col-sm-1"></div>
-        <div className="col-sm-7   my-auto" ><button className='btn bg-success'>Linkedin</button></div>
+        <div className="col-sm-7 my-auto"><button className='btn bg-success'>Linkedin</button></div>
       </div>
       {/* Row-3 */}
         <div className="row my-4 gap-1 border rounded">
@@ -53,14 +53,14 @@ const [Experiences,setExperiences]=useState(["Amazon","Amazon","Amazon","Amazon"
         </div>
 
         {/* Row-4 */} 
-        <div className="row my-4 border rounded ">
+        {/* <div className="row my-4 border rounded ">
           <h3 className='text-center'>Most Recent Expierences</h3>
             {Experiences.map((ed)=>
             <div className="col-sm-5 mx-auto my-2 bg-light text-center border rounded">
               {ed}
             </div>
           )}
-        </div>
+        </div> */}
        </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 
@@ -10,10 +10,14 @@ function validateEmail(email) {
 }
 
 
+
 function HomePage() {
   let [personid, setpersonid] = useState("");
   let navigate = useNavigate();
 
+  useEffect(() => {
+    localStorage.clear()
+  }, [])
 
   return (
     <div className="d-flex border homepage mx-4 p-5">
@@ -50,7 +54,7 @@ function HomePage() {
       </div>
       <div className="d-flex flex-column rightside justify-content-center h-100 border-start">
         <h4 className="text-center">Enter Candidates Email</h4>
-        <input 
+        <input
           type="email"
           name="email"
           id="email"

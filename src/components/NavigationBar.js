@@ -5,7 +5,7 @@ const NavigationBar = () => {
     <div className="d-flex items-center my-2 p-4">
       <div>
         <Link>
-          <img style={{width:"222"}} src="https://i.imgur.com/LxSiQyR.png" alt="konnectnxt" />
+          <img style={{width:"222px"}} src="https://i.imgur.com/LxSiQyR.png" alt="konnectnxt" />
 
         </Link>
       </div>

@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react'
 import { BiRadioCircleMarked } from "react-icons/bi";
 import { useElapsedTime } from 'use-elapsed-time'
-
+import { useNavigate } from 'react-router-dom';
 const Quiz = () => {
     const [currentQuestion, setCurrentQuestion] = useState(0)
     const [showScore, setShowScore] = useState(false)
@@ -23,19 +23,20 @@ const Quiz = () => {
         'Describe a situation where you had to adapt to a major change at work. How did you handle it?',
         'You\'re working on a team project, and a team member is not contributing. How would you address this issue?'
     ])
+    let navigate = useNavigate();
     const options = [
         ['Avoiding the colleague and not addressing the issue.', 'Blaming the colleague for the conflict.', 'Banana Initiating a conversation to discuss the issue and find a mutually beneficial solution.', 'Complaining to your supervisor about the colleague\'s behavior.'],
         ['Panic and stress out, leading to decreased productivity.', 'Prioritize tasks, delegate when possible, and organize your time efficiently.', 'Complain about the workload to your colleagues.', 'Extend the deadline without discussing it with your supervisor.'],
         ['Avoid taking responsibility and hope no one notices.', 'Blame someone else for the mistake.', 'KiwiAcknowledge the mistake, take responsibility, and propose a plan to correct it.', 'Pretend it didn\'t happen and continue as usual.'],
         ['I complained about the change but didn\'t do anything differently.', 'I resisted the change and refused to adapt', 'I embraced the change, sought support and training, and adapted successfully. ', ' I quit my job because I couldn\'t handle the change.'],
-        [' Ignore the issue and do all the work yourself.','Complain to your supervisor about the uncooperative team member. ',' Have a direct and respectful conversation with the team member to understand their perspective and find a solution. ','Gossip about the uncooperative team member with your colleagues.']
+        [' Ignore the issue and do all the work yourself.', 'Complain to your supervisor about the uncooperative team member. ', ' Have a direct and respectful conversation with the team member to understand their perspective and find a solution. ', 'Gossip about the uncooperative team member with your colleagues.']
     ]
     const values = [
-        [1,2,5,3],
-        [1,5,2,3],
-        [1,2,5,1],
-        [2,1,5,3],
-        [1,2,5,2]
+        [1, 2, 5, 3],
+        [1, 5, 2, 3],
+        [1, 2, 5, 1],
+        [2, 1, 5, 3],
+        [1, 2, 5, 2]
     ]
     const [loading, setLoading] = useState(false)
     const [key, setKey] = useState("0");
@@ -65,8 +66,9 @@ const Quiz = () => {
             if (currentQuestion < questions.length - 1) {
                 setCurrentQuestion(currentQuestion + 1)
             } else {
-                
                 setShowScore(true)
+                localStorage.setItem('score', score);
+                navigate('/profile');
             }
             setKey(new Date().getTime())
         }, 1000)
@@ -74,11 +76,7 @@ const Quiz = () => {
 
     return (
         <Flex justify={'center'} direction={'column'} align={'center'} my={'60px'} mx={'80px'}>
-            {showScore ?
-                <Box>
-                    <Heading fontSize={'30px'} mb={'10px'}>You scored {score} out of {questions.length * 5}</Heading>
-                </Box>
-                :
+            {!showScore &&
                 <Box>
                     <Flex mb={'25px'} justify={'space-between'} align={'start'}>
                         <Box fontSize={'30px'} fontWeight={'bold'} mb={'2px'}>
@@ -108,12 +106,14 @@ const Quiz = () => {
                                     onClick={() => {
                                         setLoading(true)
                                         setTimeout(() => {
-                                                setScore(score + values[currentQuestion][index])
+                                            setScore(score + values[currentQuestion][index])
                                             setLoading(false)
                                             if (currentQuestion < questions.length - 1) {
                                                 setCurrentQuestion(currentQuestion + 1)
                                             } else {
                                                 setShowScore(true)
+                                                localStorage.setItem('score', score);
+                                                navigate('/profile');
                                             }
                                             setKey(new Date().getTime())
                                         }, 1000)
@@ -132,4 +132,4 @@ const Quiz = () => {
     )
 }
 
-export default Quiz
+export default Quiz
